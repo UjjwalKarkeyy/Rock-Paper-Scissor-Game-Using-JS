@@ -2,22 +2,26 @@ let userScore = 0;
 let compScore = 0;
 
 const choices = document.querySelectorAll(".choice");
+const msg = document.querySelector('#msg');
 
-const showWinner = (userWin)=>{
+const showWinner = (userWin, userChoice, compChoice)=>{
     if(userWin)
     {
-        console.log('You Win!');
+        msg.innerText = `You Win! The ${userChoice} beats ${compChoice}!`;
+        msg.style.backgroundColor = 'green';
     }
-
+    
     else
     {
-        console.log('You Lose!');
+        msg.innerText = `You Lose! The ${compChoice} beats ${userChoice}!`;
+        msg.style.backgroundColor = 'red';
     }
 }
 
 const drawGame = ()=>{
-    console.log('Game was draw.');
-    
+    msg.innerText = 'Game Draw!';
+    msg.style.backgroundColor = '#081B31';
+
 }
 
 const genComputerChoice = ()=>{
@@ -59,7 +63,7 @@ const playGame = (userChoice)=>{
             userWin = compChoice === 'rock' ? false: true;
         }
 
-        showWinner(userWin);
+        showWinner(userWin, userChoice, compChoice);
     }
 }
 
